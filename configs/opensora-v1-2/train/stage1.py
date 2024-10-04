@@ -57,7 +57,7 @@ model = dict(
     type="STDiT3-XL/2",
     from_pretrained=None,
     qk_norm=True,
-    enable_flash_attn=True,
+    enable_flash_attn=False,
     enable_layernorm_kernel=True,
     freeze_y_embedder=True,
 )
