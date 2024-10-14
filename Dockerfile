@@ -23,4 +23,4 @@ RUN pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolati
 RUN pip install xformers --index-url https://download.pytorch.org/whl/cu121
 
 # install this project
-RUN pip install -v .
+RUN pip install -v -e .
