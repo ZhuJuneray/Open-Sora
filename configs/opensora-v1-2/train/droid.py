@@ -35,7 +35,7 @@ plugin = "zero2"
 # Model settings
 model = dict(
     type="STDiT3-XL/2",
-    from_pretrained=None,
+    from_pretrained="hpcai-tech/OpenSora-STDiT-v3",
     qk_norm=True,
     enable_flash_attn=True,
     enable_layernorm_kernel=True,
@@ -59,20 +59,20 @@ scheduler = dict(
     sample_method="logit-normal",
 )
 
-# Mask settings
-# 25%
-mask_ratios = {
-    "random": 0.01,
-    "intepolate": 0.002,
-    "quarter_random": 0.002,
-    "quarter_head": 0.002,
-    "quarter_tail": 0.002,
-    "quarter_head_tail": 0.002,
-    "image_random": 0.0,
-    "image_head": 0.22,
-    "image_tail": 0.005,
-    "image_head_tail": 0.005,
-}
+# # Mask settings
+# # 25%
+# mask_ratios = {
+#     "random": 0.01,
+#     "intepolate": 0.002,
+#     "quarter_random": 0.002,
+#     "quarter_head": 0.002,
+#     "quarter_tail": 0.002,
+#     "quarter_head_tail": 0.002,
+#     "image_random": 0.0,
+#     "image_head": 0.22,
+#     "image_tail": 0.005,
+#     "image_head_tail": 0.005,
+# }
 
 # Log settings
 seed = 42
@@ -80,7 +80,7 @@ outputs = "outputs"
 wandb = False
 epochs = 1000
 log_every = 10
-ckpt_every = 200
+ckpt_every = 100
 
 # optimization settings
 load = None

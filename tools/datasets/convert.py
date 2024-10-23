@@ -1,6 +1,7 @@
 import argparse
 import os
 import time
+import json
 
 import pandas as pd
 from torchvision.datasets import ImageNet
@@ -119,10 +120,49 @@ def process_general_videos(root, output):
     df.to_csv(output, index=False)
     print(f"Saved {len(df)} samples to {output}.")
 
+def process_droid(root, output):
+    root = os.path.expanduser(root)
+    video_list = []
+    task_list = []
+
+    # Recursively scan for mp4 files
+    for subdir, _, files in os.walk(root):
+        mp4_files = [f for f in files if f.endswith('.mp4')]
+        
+        # For each mp4 file, find the corresponding JSON file two levels up
+        if mp4_files:
+            # Get the parent directory and look for the JSON file
+            parent_dir = os.path.dirname(os.path.dirname(subdir))  # Two levels up
+            json_file = None
+
+            # Find the JSON file starting with 'metadata'
+            for file in os.listdir(parent_dir):
+                if file.startswith("metadata") and file.endswith(".json"):
+                    json_file = os.path.join(parent_dir, file)
+                    break
+
+            # If the JSON file exists, read it and get the "current_task" field
+            if json_file and os.path.exists(json_file):
+                with open(json_file, 'r') as f:
+                    metadata = json.load(f)
+                    current_task = metadata.get("current_task", "Unknown Task")
+                    
+                # Add each video file with its corresponding task
+                for mp4 in mp4_files:
+                    video_path = os.path.join(subdir, mp4)
+                    video_list.append(video_path)
+                    task_list.append(current_task)
+
+    # Create DataFrame and save to CSV
+    df = pd.DataFrame({"path": video_list, "text": task_list})
+    os.makedirs(os.path.dirname(output), exist_ok=True)
+    df.to_csv(output, index=False)
+    print(f"Saved {len(df)} samples to {output}.")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("dataset", type=str, choices=["imagenet", "ucf101", "vidprom", "image", "video"])
+    parser.add_argument("dataset", type=str, choices=["imagenet", "ucf101", "vidprom", "droid", "image", "video"])
     parser.add_argument("root", type=str)
     parser.add_argument("--split", type=str, default="train")
     parser.add_argument("--info", type=str, default=None)
@@ -139,5 +179,7 @@ if __name__ == "__main__":
         process_general_images(args.root, args.output)
     elif args.dataset == "video":
         process_general_videos(args.root, args.output)
+    elif args.dataset == "droid":
+        process_droid(args.root, args.output)
     else:
         raise ValueError("Invalid dataset")

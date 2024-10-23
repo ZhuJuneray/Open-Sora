@@ -167,6 +167,7 @@ cython_debug/
 # misc files
 data/
 dataset/
+dataset_sample/
 runs/
 checkpoints/
 outputs/

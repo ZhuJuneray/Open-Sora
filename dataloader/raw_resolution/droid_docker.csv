@@ -1,0 +1,10 @@
+path,text,num_frames,height,width,aspect_ratio,fps,resolution
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Wed_Nov_29_16:40:04_2023/recordings/MP4/24400334.mp4,"Place pen in cloth, wrap pen in cloth, and put in box.",508,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Wed_Nov_29_16:40:04_2023/recordings/MP4/18026681.mp4,"Place pen in cloth, wrap pen in cloth, and put in box.",508,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Wed_Nov_29_16:40:04_2023/recordings/MP4/22008760.mp4,"Place pen in cloth, wrap pen in cloth, and put in box.",508,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Thu_Nov_30_00:11:37_2023/recordings/MP4/22008760.mp4,"Unwrap objects from cloth, put cloth in box, and put objects in mug.",1293,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Thu_Nov_30_00:11:37_2023/recordings/MP4/18026681.mp4,"Unwrap objects from cloth, put cloth in box, and put objects in mug.",1293,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Thu_Nov_30_00:11:37_2023/recordings/MP4/24400334.mp4,"Unwrap objects from cloth, put cloth in box, and put objects in mug.",1293,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Wed_Nov_29_20:29:47_2023/recordings/MP4/18026681.mp4,"Place pen in cloth, wrap pen in cloth, and put in box.",346,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Wed_Nov_29_20:29:47_2023/recordings/MP4/24400334.mp4,"Place pen in cloth, wrap pen in cloth, and put in box.",346,720,1280,0.5625,60.0,921600
+./dataset/droid_raw/AUTOLab/success/2023-11-29/Wed_Nov_29_20:29:47_2023/recordings/MP4/22008760.mp4,"Place pen in cloth, wrap pen in cloth, and put in box.",346,720,1280,0.5625,60.0,921600

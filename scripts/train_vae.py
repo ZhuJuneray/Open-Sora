@@ -1,4 +1,6 @@
 import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "4,5,6,7"
+
 import random
 from datetime import timedelta
 from pprint import pformat
@@ -31,7 +33,10 @@ from opensora.utils.misc import (
 from opensora.utils.train_utils import create_colossalai_plugin
 
 
+
 def main():
+
+
     # ======================================================
     # 1. configs & runtime variables
     # ======================================================
@@ -47,7 +52,12 @@ def main():
     # == colossalai init distributed training ==
     # NOTE: A very large timeout is set to avoid some processes exit early
     dist.init_process_group(backend="nccl", timeout=timedelta(hours=24))
-    torch.cuda.set_device(dist.get_rank() % torch.cuda.device_count())
+    # torch.cuda.set_device(dist.get_rank() % torch.cuda.device_count())
+    # print(torch.cuda.device_count())
+    # print(dist.get_rank())
+    torch.cuda.set_device(dist.get_rank())
+    # print(dist.get_rank())
+    print(f"Rank {dist.get_rank()} using GPU {torch.cuda.current_device()} ({torch.cuda.get_device_name(torch.cuda.current_device())})")
     set_seed(cfg.get("seed", 1024))
     coordinator = DistCoordinator()
     device = get_current_device()

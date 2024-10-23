@@ -1,4 +1,4 @@
-num_frames = 33
+num_frames = 24
 image_size = (256, 256)
 
 # Define dataset
@@ -12,7 +12,7 @@ dataset = dict(
 
 # Define acceleration
 num_workers = 16
-dtype = "bf16"
+dtype = "fp16" # change from "bf16" to "fp16"
 grad_checkpoint = True
 plugin = "zero2"
 
@@ -20,7 +20,8 @@ plugin = "zero2"
 model = dict(
     type="OpenSoraVAE_V1_2",
     freeze_vae_2d=False,
-    from_pretrained="outputs/vae_stage2",
+    # from_pretrained="outputs/vae_stage2", # OSError: outputs/vae_stage2 is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+    from_pretrained="hpcai-tech/OpenSora-VAE-v1.2",
     cal_loss=True,
 )
 
@@ -38,11 +39,12 @@ seed = 42
 outputs = "outputs/vae_stage3"
 wandb = False
 
-epochs = 100  # NOTE: adjust accordingly w.r.t dataset size
-log_every = 1
-ckpt_every = 1000
+epochs = 1000  # NOTE: adjust accordingly w.r.t dataset size
+log_every = 100
+ckpt_every = 2000
 load = None
 
-batch_size = 1
-lr = 1e-5
+batch_size = 2
+# lr = 1e-5 # batch_size = 1
+lr = 2*1e-5
 grad_clip = 1.0

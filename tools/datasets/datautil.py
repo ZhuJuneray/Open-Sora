@@ -480,6 +480,17 @@ def read_data(input_paths):
     print(f"Total number of samples: {len(data)}")
     return data, input_name
 
+def filter_by_min_frame(data, min_frame):
+    """
+    Filters out rows where 'num_frames' is less than 'min_frame', with multithreading and progress bar support.
+    """
+    if PANDA_USE_PARALLEL:
+        filtered_data = data.parallel_apply(lambda row: row['num_frames'] >= min_frame, axis=1)
+    else:
+        filtered_data = data.progress_apply(lambda row: row['num_frames'] >= min_frame, axis=1)
+    
+    return data[filtered_data]
+
 
 # ======================================================
 # main
@@ -669,6 +680,9 @@ def main(args):
 
     print(f"Filtered number of samples: {len(data)}.")
 
+    if args.min_frame is not None:
+        data = filter_by_min_frame(data, args.min_frame)
+
     # shard data
     if args.shard is not None:
         sharded_data = np.array_split(data, args.shard)
@@ -680,6 +694,7 @@ def main(args):
     else:
         save_file(data, output_path)
         print(f"Saved {len(data)} samples to {output_path}.")
+        
 
 
 def parse_args():
@@ -762,6 +777,7 @@ def parse_args():
     # data processing
     parser.add_argument("--shuffle", default=False, action="store_true", help="shuffle the dataset")
     parser.add_argument("--head", type=int, default=None, help="return the first n rows of data")
+    parser.add_argument("--min_frame", type=int, default=None, help="Filter out rows where num_frames < min_frame")
 
     return parser.parse_args()
 
