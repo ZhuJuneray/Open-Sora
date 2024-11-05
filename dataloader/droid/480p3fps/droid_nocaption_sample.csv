@@ -1,0 +1,3 @@
+path,text,num_frames,height,width,aspect_ratio,fps,resolution
+/shared/fangchen/junrui/Open-Sora/dataset/droid_480p3fps/PennPAL/success/2023-06-25/Sun_Jun_25_18:58:30_2023/recordings/MP4/25455306.mp4,Do anything you like that takes multiple steps to complete.,28,480,854,0.5620608899297423,3.0,409920
+/shared/fangchen/junrui/Open-Sora/dataset/droid_480p3fps/PennPAL/success/2023-06-25/Sun_Jun_25_18:58:30_2023/recordings/MP4/27085680-stereo.mp4,Do anything you like that takes multiple steps to complete.,28,480,1706,0.2813599062133646,3.0,818880

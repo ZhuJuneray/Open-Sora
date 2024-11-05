@@ -1,0 +1,15 @@
+Generate a synthetic description for this video in a detailed manner based on the 4 uniformaly extracted frames and a high-level task description from the dataset. 
+You should consider the environment, the specific actions of the robot, and the camera view.
+The environmrnt includes the objects being acted upon, and its detailed description like texture, and their surrounding environment.
+Do not describe it frame by frame, instead, unified narrative that captures the overall action(task). You especially need to elaborate on the description of the actions.
+The camera view is either on robot arm frame, or world frame, which means the camera is either fixed to a robotic arm (which moves relative to the world) or stationary relative to the world. 
+The description should be useful for AI to re-generate the video. 
+The description should be no more than four sentences. 
+For example, a good description would be: 
+"
+A grey robot arm succeeds in moving a red plastic block from the left side of the wood table to the right side in a straight line, in a well lighted lab. There are no other objects on the table. The camera view is fixed to the world frame.
+"
+
+Now, the given high-level task description for this video is:
+"{task_description}"
+Your synthetic description here:

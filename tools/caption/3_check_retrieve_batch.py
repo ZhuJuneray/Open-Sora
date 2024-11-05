@@ -1,21 +1,3 @@
-# from openai import OpenAI
-# import json
-# client = OpenAI()
-# with open("/home/fangchen/junrui/Open-Sora/data/caption/batch_request_droid_480p24fps_info.json", "r") as json_file:
-#     response_data = json.load(json_file)
-# batch = client.batches.retrieve(response_data["id"])
-# print(batch.status)
-# if batch.status == "completed":
-#     # save batch_info response to a file
-#     with open("/home/fangchen/junrui/Open-Sora/data/caption/batch_request_droid_480p24fps_completed_info.json", "w") as json_file:
-#         json.dump(batch.to_dict(), json_file, indent=4)
-#     print(batch)
-#     file_response = client.files.content(batch.output_file_id)
-#     file_content = file_response.read()
-#     with open("/home/fangchen/junrui/Open-Sora/data/caption/batch_response_droid_480p24fps.jsonl", "wb") as json_file:
-#         json_file.write(file_content)
-
-
 # retieve a dir
 from openai import OpenAI
 import json
@@ -25,8 +7,8 @@ import os
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 # Specify the directory containing the info JSON files
-info_directory = "/home/fangchen/junrui/Open-Sora/data/caption/droid/info"
-output_directory = "/home/fangchen/junrui/Open-Sora/data/caption/droid/response"
+info_directory = "data/caption/info"
+output_directory = "data/caption/response"
 
 # Iterate over each file in the info directory
 for filename in os.listdir(info_directory):
@@ -69,3 +51,24 @@ for filename in os.listdir(info_directory):
             print(f"Skipping {filename}: Status is '{batch.status}'.")
 
 print("Script end.")
+
+# single file: 
+
+# from openai import OpenAI
+# import json
+# client = OpenAI()
+# with open("/home/fangchen/junrui/Open-Sora/data/caption/batch_request_droid_480p24fps_info.json", "r") as json_file:
+#     response_data = json.load(json_file)
+# batch = client.batches.retrieve(response_data["id"])
+# print(batch.status)
+# if batch.status == "completed":
+#     # save batch_info response to a file
+#     with open("/home/fangchen/junrui/Open-Sora/data/caption/batch_request_droid_480p24fps_completed_info.json", "w") as json_file:
+#         json.dump(batch.to_dict(), json_file, indent=4)
+#     print(batch)
+#     file_response = client.files.content(batch.output_file_id)
+#     file_content = file_response.read()
+#     with open("/home/fangchen/junrui/Open-Sora/data/caption/batch_response_droid_480p24fps.jsonl", "wb") as json_file:
+#         json_file.write(file_content)
+
+

@@ -11,13 +11,13 @@ def convert_video(src_path, dest_path):
     if os.path.exists(dest_path):
         return
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
-    ffmpeg_path = '/home/fangchen/miniconda3/bin/ffmpeg'
+    ffmpeg_path = '/usr/bin/ffmpeg'
     cmd = [
         ffmpeg_path,
         '-y',  # 覆盖输出文件
         '-i', src_path,
         '-vf', 'scale=-2:480',
-        '-r', '24',
+        '-r', '3',
         '-c:v', 'libx264',
         '-preset', 'fast',
         '-c:a', 'copy',
@@ -55,12 +55,12 @@ def process_files(src_dir, dest_dir):
         copy_file(src_path, dest_path)
 
     # 使用多进程转换视频，显示进度条
-    with ProcessPoolExecutor(max_workers=cpu_cores/2) as executor:
+    with ProcessPoolExecutor(max_workers=cpu_cores//2) as executor:
         futures = [executor.submit(convert_video, src_path, dest_path) for src_path, dest_path in video_files]
         for future in tqdm(as_completed(futures), total=len(futures), desc="Converting videos", unit="video"):
             future.result()
 
 if __name__ == '__main__':
     src_directory = '/shared/fangchen/junrui/Open-Sora/dataset/droid_raw'
-    dest_directory = '/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps'
+    dest_directory = '/shared/fangchen/junrui/Open-Sora/dataset/droid_480p3fps'
     process_files(src_directory, dest_directory)
