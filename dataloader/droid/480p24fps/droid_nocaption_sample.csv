@@ -1,7 +1,6 @@
 path,text,num_frames,height,width,aspect_ratio,fps,resolution
 /shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/CLVR/success/2023-06-04/Sun_Jun__4_17:39:58_2023/recordings/MP4/20103212.mp4,"Press button (ex: light switch, elevators, microwave button)",99,480,854,0.5620608899297423,24.0,409920.0
-/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/CLVR/success/2023-06-04/Sun_Jun__4_17:39:58_2023/recordings/MP4/16787047.mp4,"Press button (ex: light switch, elevators, microwave button)",99,480,854,0.5620608899297423,24.0,409920.0
-/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/CLVR/success/2023-06-04/Sun_Jun__4_17:39:58_2023/recordings/MP4/20655732.mp4,"Press button (ex: light switch, elevators, microwave button)",99,480,854,0.5620608899297423,24.0,409920.0
-/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/CLVR/success/2023-06-04/Sun_Jun__4_16:31:52_2023/recordings/MP4/16787047.mp4,pull a tissue from the box,60,480,854,0.5620608899297423,24.0,409920.0
-/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/CLVR/success/2023-06-04/Sun_Jun__4_16:31:52_2023/recordings/MP4/20103212.mp4,pull a tissue from the box,60,480,854,0.5620608899297423,24.0,409920.0
-/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/CLVR/success/2023-06-04/Sun_Jun__4_16:31:52_2023/recordings/MP4/20655732.mp4,pull a tissue from the box,60,480,854,0.5620608899297423,24.0,409920.0
+/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/ILIAD/success/2023-06-15/Thu_Jun_15_13:50:50_2023/recordings/MP4/27904255.mp4,"Move object to a new position and orientation (ex: grasping, relocating, flipping)",76,480,854,0.5620608899297423,24.0,409920.0
+/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/AUTOLab/success/2023-12-15/Fri_Dec_15_22:59:08_2023/recordings/MP4/13062452.mp4,move rubber bands in/out of bag,102,480,854,0.5620608899297423,24.0,409920.0
+/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/AUTOLab/success/2023-07-23/Sun_Jul_23_21:49:53_2023/recordings/MP4/22008760.mp4,put the lid on the kettle,126,480,854,0.5620608899297423,24.0,409920.0
+/shared/fangchen/junrui/Open-Sora/dataset/droid_480p24fps/AUTOLab/success/2023-11-16/Thu_Nov_16_12:51:44_2023/recordings/MP4/24400334.mp4,Sort disks into cups by color.,279,480,854,0.5620608899297423,24.0,409920.0

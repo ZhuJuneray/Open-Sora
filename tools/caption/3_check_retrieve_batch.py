@@ -36,7 +36,7 @@ for filename in os.listdir(info_directory):
             # Save batch info response to a file
             with open(os.path.join(output_directory, completed_info_filename), "w") as json_file:
                 json.dump(batch.to_dict(), json_file, indent=4)
-            print(batch)
+            # print(batch)
 
             # Retrieve the output file content
             file_response = client.files.content(batch.output_file_id)

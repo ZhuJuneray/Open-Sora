@@ -31,6 +31,6 @@ def split_jsonl_file(input_file, output_dir, max_lines_per_file=50000, max_size_
     output_file.close()
 
 # 使用示例
-input_file = '/home/fangchen/junrui/Open-Sora/data/caption/batch_request_droid.jsonl'  # 原始JSONL文件路径
-output_dir = '/home/fangchen/junrui/Open-Sora/data/caption/droid_divide'  # 输出文件夹路径
+input_file = 'data/caption/batch_request_droid.jsonl'  # 原始JSONL文件路径
+output_dir = 'data/caption/requests'  # 输出文件夹路径
 split_jsonl_file(input_file, output_dir)

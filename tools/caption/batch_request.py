@@ -98,7 +98,7 @@ def process_video(data_line, output_dir, points_list, template_path):
     # Generate JSONL entry
     return generate_jsonl_entry(video_path, frames, task_description, template_path)
 
-def create_batch_request(data, input_dir, output_dir, jsonl_output_path, points, template_path, max_workers=32):
+def create_batch_request(data, input_dir, output_dir, jsonl_output_path, points, template_path, max_workers=128):
     """Create batch request for multiple videos."""
     # 复制并展开数据帧
     num_points = len(points)

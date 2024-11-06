@@ -33,20 +33,24 @@ CUDA_VISIBLE_DEVICES=6,7 OMP_NUM_THREADS=1 torchrun --standalone --nproc_per_nod
 ## Frame Extraction and generate batch request
 ```bash
 python -m tools.caption.batch_request \
-    dataloader/droid/480p24fps/droid_nocaption_sample.csv \ # dataset csv
-    dataset/droid_480p24fps \ # video dataset path
-    dataset/droid_480p24fps_frame \ # those failed to extract will be save here (num_frame=1)
+    dataloader/droid/480p24fps/droid_subset_nocaption.csv \
+    dataset/droid_480p24fps \
+    dataset/droid_480p24fps_frame \
     --jsonl_output "data/caption/batch_request_droid.jsonl" \
-    --template_path "tools/caption/templates/message_template.txt" \ # prompt template
-    --points 0.1 0.3 0.6 0.9 # which frames to be extracted
+    --template_path "tools/caption/templates/message_template.txt" \
+    --points 0.1 0.3 0.6 0.9 
 ```
 Now we have generated jsonl file "data/caption/batch_request_droid.jsonl" to be uploaded to OpenAI
-If the jsonl file is oversized, run dataloader/divide_jsonl.py to divide it into chunks.
+If the jsonl file is oversized, run 
+python dataloader/divide_jsonl.py 
+to divide it into chunks.
 ## Upload jsonl batch file
-run tools/caption/2_upload_batch.py
+run 
+python tools/caption/2_upload_batch.py
 Remember to check variables
 ## Check status and retrieve response (if completed)
-run tools/caption/3_check_retrieve_batch.py
+run 
+python tools/caption/3_check_retrieve_batch.py
 
 
 # filter out very short videos
