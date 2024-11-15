@@ -7,7 +7,7 @@ python -m tools.datasets.convert droid /shared/fangchen/junrui/Open-Sora/dataset
 ```
 Get video information, output is column "num_frames,height,width,aspect_ratio,fps,resolution" in CSV
 ```bash
-python -m tools.datasets.datautil dataloader/full_dataset/droid_raw.csv --video-info
+python -m tools.datasets.datautil dataloader/bridge/bridge.csv --video-info
 ```
 
 ## Training
