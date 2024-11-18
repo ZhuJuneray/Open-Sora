@@ -15,7 +15,7 @@ def process_json_files(input_folder, output_csv):
     # 创建CSV文件并写入表头
     with open(output_csv, 'w', newline='', encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['path', 'text'])
+        csv_writer.writerow(['path', 'state', 'action', 'continuous_gripper_state'])
         
         # 递归遍历所有JSON文件
         for json_file in Path(input_folder).rglob('*.json'):
@@ -28,6 +28,10 @@ def process_json_files(input_folder, output_csv):
                 
                 # 处理视频路径
                 videos = data.get('videos', [])
+
+                state = data.get('state', [])
+                action = data.get('action', [])
+                continuous_gripper_state = data.get('continuous_gripper_state', [])
                 
                 # 如果有多个视频，发出警告
                 if len(videos) > 1:
@@ -36,7 +40,7 @@ def process_json_files(input_folder, output_csv):
                 # 为每个视频路径创建一行
                 for video in videos:
                     video_path = video.get('video_path', '')
-                    csv_writer.writerow(['dataset/bridge/'+video_path, texts])
+                    csv_writer.writerow(['dataset/bridge/'+video_path, state, action, continuous_gripper_state])
                     
             except Exception as e:
                 print(f"处理文件 {json_file} 时出错: {str(e)}")
@@ -44,7 +48,7 @@ def process_json_files(input_folder, output_csv):
 # 使用示例
 if __name__ == "__main__":
     input_folder = "dataset/opensource_robotdata/bridge/annotation"  # 替换为你的输入文件夹路径
-    output_csv = "dataloader/bridge/bridge.csv"  # 输出CSV文件名
+    output_csv = "dataloader/bridge/bridge_actioned.csv"  # 输出CSV文件名
     
     process_json_files(input_folder, output_csv)
     print(f"转换完成，结果已保存至 {output_csv}")
