@@ -1,3 +1,38 @@
+# Installation
+Switch to CUDA 12.1
+```bash
+ls /usr/local  # lists available cuda versions
+sudo ln -sfT /usr/local/cuda-12.1 /usr/local/cuda
+sudo ldconfig
+```
+Switch to gcc 11, which is the newest gcc version supported by apex in CUDA 12.1
+```bash
+sudo update-alternatives --config gcc
+```
+
+Some bug exist in newest nvidia apex, need to specify apex version by tag:
+```bash
+pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" git+https://github.com/NVIDIA/apex.git@24.04.01
+```
+
+But meanwhile, apex require GLIBCXX_3.4.32 which is not included in gcc11, so if higher gcc version is also installed on machine, link the missing libstdc++ to gcc-13.
+Error would be like:
+
+```bash
+ImportError: /home/fangchen/miniconda3/envs/opensora/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.32' not found (required by /home/fangchen/miniconda3/envs/opensora/lib/python3.9/site-packages/fused_layer_norm_cuda.cpython-39-x86_64-linux-gnu.so)
+```
+command to link:
+
+```bash
+# 首先备份原来的库（以防需要恢复）
+mv /home/fangchen/miniconda3/envs/opensora/lib/libstdc++.so.6 /home/fangchen/miniconda3/envs/opensora/lib/libstdc++.so.6.backup
+
+# 创建从 gcc-13 的库到 conda 环境的符号链接
+ln -s /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so /home/fangchen/miniconda3/envs/opensora/lib/libstdc++.so.6
+注意：如果遇到任何问题，你可以使用备份恢复：
+mv /home/fangchen/miniconda3/envs/opensora/lib/libstdc++.so.6.backup /home/fangchen/miniconda3/envs/opensora/lib/libstdc++.so.6
+```
+
 # Training on DROID Pipeline
 
 ## Data Process
@@ -13,7 +48,8 @@ python -m tools.datasets.datautil dataloader/bridge/bridge.csv --video-info
 ## Training
 ```bash
 # one node
-CUDA_VISIBLE_DEVICES=4,5,6,7 OMP_NUM_THREADS=1 torchrun --standalone --nproc_per_node 4 scripts/train.py configs/opensora-v1-2/train/droid.py --data-path dataloader/droid_docker.csv
+
+CUDA_VISIBLE_DEVICES=2,6,7 OMP_NUM_THREADS=1 torchrun --standalone --nproc_per_node 3 scripts/train.py configs/robotic/bridge.py --data-path dataloader/bridge/bridge.csv
 
 # multiple nodes
 colossalai run --nproc_per_node 8 --hostfile hostfile scripts/train.py \
